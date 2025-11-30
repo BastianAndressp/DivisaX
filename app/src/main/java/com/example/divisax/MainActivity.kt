@@ -1,17 +1,16 @@
 package com.example.divisax
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.divisax.ui.theme.DivisaXTheme
+import com.example.divisax.ui.screens.landing.LandingRole
+import com.example.divisax.ui.screens.landing.LandingRoute
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,10 +18,22 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             DivisaXTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                Surface(modifier = Modifier.fillMaxSize()) {
+                    LandingRoute(
+                        onNavigateToSeedRestore = {
+                            Toast.makeText(
+                                this,
+                                "Pronto podrás restaurar tu billetera con tu frase semilla.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onNavigateToRole = { role: LandingRole ->
+                            val message = when (role) {
+                                LandingRole.Shopper -> "Preparando la experiencia de usuario comprador."
+                                LandingRole.Merchant -> "Preparando la experiencia de comercio."
+                            }
+                            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        }
                     )
                 }
             }
@@ -30,18 +41,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    DivisaXTheme {
-        Greeting("Android")
-    }
-}

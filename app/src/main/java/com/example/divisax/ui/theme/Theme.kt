@@ -12,32 +12,39 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = BrandPrimary,
+    onPrimary = NightSky,
+    secondary = BrandSecondary,
+    onSecondary = TextPrimaryDark,
+    tertiary = BrandTertiary,
+    background = NightSky,
+    onBackground = TextPrimaryDark,
+    surface = SoftSurfaceDark,
+    onSurface = TextPrimaryDark,
+    surfaceVariant = DeepSpace,
+    onSurfaceVariant = TextSecondaryDark,
+    outline = TextSecondaryDark.copy(alpha = 0.4f)
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    primary = BrandSecondary,
+    onPrimary = TextPrimaryDark,
+    secondary = BrandPrimary,
+    onSecondary = DayOnSurface,
+    tertiary = BrandTertiary,
+    background = DayBackground,
+    onBackground = DayOnSurface,
+    surface = DaySurface,
+    onSurface = DayOnSurface,
+    surfaceVariant = DaySurfaceVariant,
+    onSurfaceVariant = DayOnSurface.copy(alpha = 0.7f),
+    outline = DayOnSurface.copy(alpha = 0.35f)
 )
 
 @Composable
 fun DivisaXTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
