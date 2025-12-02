@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DivisaX"
+rootProject.name = "NOVARA"
 include(":app")
